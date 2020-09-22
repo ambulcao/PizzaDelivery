@@ -4,6 +4,12 @@ body {
 
 .ingredients {
   position: absolute;
+  margin-top: -100px;
+}
+
+.cheese {
+  width: 100%;
+  position: absolute;
 }
 
 /* The container */
