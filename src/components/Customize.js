@@ -7,178 +7,168 @@ import Mushroom from "../assets/Mushroom.png";
 import Basil from "../assets/Basil.png";
 import Tomato from "../assets/Tomato.png";
 import { motion } from "framer-motion";
+import { useHistory } from "react-router-dom";
 
 export default function Customize({ ingredients, setIngredients }) {
+  let history = useHistory();
+
   const onChange = (event, name) => {
-    //console.log(localStorage);
+    console.log(localStorage);
     let newIngredients = JSON.parse(JSON.stringify(ingredients));
     newIngredients[name] = event;
     setIngredients(newIngredients);
     localStorage.setItem("ingredients", JSON.stringify(newIngredients));
   };
-  //const changeIngredients = (name) => {
-  //  let newIngredients = JSON.parse(JSON.stringify(ingredients)); 
-    // Toggle That Ingredient  25:16 
-  //  newIngredients[name] = !newIngredients[name]
-  //  setIngredients(newIngredients);
-  
-  
+
   return (
-    <div style= {{ display: "flex"}}>
-       <div style={{ border: "2px solid black", flex: 1 }}>Pizza Marguerita
-        <div style={{maxHeight:500, maxWidth: 500, position: "relative" }}>
-          
+    <div style={{ display: "flex" }}>
+      <div style={{ flex: 1, padding: 40 }}>
+        <div style={{ maxHeight: 500, maxWidth: 500, position: "relative" }}>
           <motion.div
             initial={{ opacity: 0 }}
             animate={{
-              y : ingredients["basil"] ? 100 : -100,
+              y: ingredients["basil"] ? 100 : -100,
               opacity: ingredients["basil"] ? 1 : 0,
             }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 0.3 }}
             className="ingredients z4"
-          >          
-          <img src={Basil} alt="Pizza Base" height="100%" width= "100%" /*className="ingredients"*/ />
+          >
+            <img src={Basil} alt="Pizza Base" height="100%" width="100%" />
           </motion.div>
-
           <motion.div
             initial={{ opacity: 0 }}
             animate={{
-              y : ingredients["olive"] ? 100 : -100,
+              y: ingredients["olive"] ? 100 : -100,
               opacity: ingredients["olive"] ? 1 : 0,
             }}
             transition={{ duration: 1 }}
             className="ingredients z4"
           >
-          <img src={Olive} alt="Pizza Base" height="100%" width= "100%" /*className="ingredients"*/ />
+            <img src={Olive} alt="Pizza Base" height="100%" width="100%" />
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0 }}
             animate={{
-              y : ingredients["pineapple"] ? 100 : -100,
+              y: ingredients["pineapple"] ? 100 : -100,
               opacity: ingredients["pineapple"] ? 1 : 0,
             }}
             transition={{ duration: 1 }}
-            clasName="ingredients z4"
+            className="ingredients z3"
           >
-          <img src={Pineapple} alt="Pizza Base" height="100%" width= "100%" /*className="ingredients"*/ />
+            <img src={Pineapple} alt="Pizza Base" height="100%" width="100%" />
           </motion.div>
-          
           <motion.div
             initial={{ opacity: 0 }}
             animate={{
-              y : ingredients["tomato"] ? 100 : -100,
+              y: ingredients["tomato"] ? 100 : -100,
               opacity: ingredients["tomato"] ? 1 : 0,
             }}
             transition={{ duration: 1 }}
             className="ingredients z4"
           >
-          <img src={Tomato} alt="Pizza Base" height="100%" width= "100%" /*className="ingredients"*/ />
+            <img src={Tomato} alt="Tomato" height="100%" width="100%" />
           </motion.div>
-
           <motion.div
             initial={{ scale: 0 }}
-            animate={{ 
-              //y : ingredients["basil"] ? 100 : -100,
-              //opacity: ingredients["basil"] ? 1 : 0,
+            animate={{
+              // y: ingredients["cheese"] ? 100 : -100,
+              // opacity: ingredients["cheese"] ? 1 : 0,
               scale: ingredients["cheese"] ? 1 : 0,
             }}
             transition={{ duration: 0.3 }}
             className="cheese z1"
           >
-          <img src={Cheese} alt="Pizza Base" height="100%" width= "100%" /*className="ingredients"*/ />
+            <img src={Cheese} alt="Cheese" height="100%" width="100%" />
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0 }}
-            animate={{ 
-              y : ingredients["mushroom"] ? 100 : -100,
+            animate={{
+              y: ingredients["mushroom"] ? 100 : -100,
               opacity: ingredients["mushroom"] ? 1 : 0,
             }}
             transition={{ duration: 1 }}
             className="ingredients z4"
           >
-          <img src={Mushroom} alt="Pizza Base" height="100%" width= "100%" /*className="ingredients"*/ />
-          </motion.div>
-          
-          <motion.div
-            transition={{ duration: 1 }}
-            className=""
-          >
-          <img src={Base} alt="Pizza Base" height="100%" width= "100%" />
+            <img src={Mushroom} alt="Pizza Base" height="100%" width="100%" />
           </motion.div>
 
+          <motion.div transition={{ duration: 1 }} className="">
+            <img src={Base} alt="Pizza Base" height="100%" width="100%" />
+          </motion.div>
         </div>
       </div>
-      <div style={{ border: "2px solid black", flex: 1 }}>
-        <label class="container-checkbox">
+      <div style={{ flex: 1, padding: 40 }}>
+        <label className="container-checkbox">
           Pineapple
           <input
             type="checkbox"
             checked={ingredients["pineapple"]}
-            onChange={(event) => 
+            onChange={(event) =>
               onChange(event.currentTarget.checked, "pineapple")
-            } 
+            }
           />
-        <span class="checkmark"></span>
+          <span className="checkmark"></span>
         </label>
-        <label class="container-checkbox">
+        <label className="container-checkbox">
           Basil
           <input
             type="checkbox"
             checked={ingredients["basil"]}
-            onChange={(event) => 
-              onChange(event.currentTarget.checked, "basil")
-            } 
+            onChange={(event) => onChange(event.currentTarget.checked, "basil")}
           />
-        <span class="checkmark"></span>
+          <span className="checkmark"></span>
         </label>
-        <label class="container-checkbox">
+        <label className="container-checkbox">
           Olive
           <input
             type="checkbox"
             checked={ingredients["olive"]}
-            onChange={(event) => 
-              onChange(event.currentTarget.checked, "olive")
-            } 
+            onChange={(event) => onChange(event.currentTarget.checked, "olive")}
           />
-        <span class="checkmark"></span>
+          <span className="checkmark"></span>
         </label>
-        <label class="container-checkbox">
+        <label className="container-checkbox">
           Tomato
           <input
             type="checkbox"
             checked={ingredients["tomato"]}
-            onChange={(event) => 
+            onChange={(event) =>
               onChange(event.currentTarget.checked, "tomato")
-            } 
+            }
           />
-        <span class="checkmark"></span>
+          <span className="checkmark"></span>
         </label>
-        <label class="container-checkbox">
+        <label className="container-checkbox">
           Mushroom
           <input
             type="checkbox"
             checked={ingredients["mushroom"]}
-            onChange={(event) => 
+            onChange={(event) =>
               onChange(event.currentTarget.checked, "mushroom")
-            } 
+            }
           />
-        <span class="checkmark"></span>
+          <span className="checkmark"></span>
         </label>
-        <label class="container-checkbox">
+        <label className="container-checkbox">
           Cheese
           <input
             type="checkbox"
             checked={ingredients["cheese"]}
-            onChange={(event) => 
+            onChange={(event) =>
               onChange(event.currentTarget.checked, "cheese")
-            } 
+            }
           />
-        <span class="checkmark"></span>
+          <span className="checkmark"></span>
         </label>
+        <button
+          onClick={() => history.push("/checkout")}
+          className="proceedToCheckout"
+        >
+          Proceed to Checkout
+        </button>
       </div>
-      {JSON.stringify(ingredients)}
     </div>
   );
 }
